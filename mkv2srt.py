@@ -18,8 +18,7 @@ def getcmd(i):
 if len(sys.argv) < 2:
 	print "usage: %s stream [filename]\ntry: 'ffmpeg -i filename' to determine srt stream number" % os.path.basename(__file__) 
 	sys.exit(0)
-
-if len(sys.argv) < 3:
+elif len(sys.argv) < 3:
 	mkvs = glob.glob("*.mkv")
 	for i in mkvs:
 		call(getcmd(i))
