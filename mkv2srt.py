@@ -1,29 +1,29 @@
 #!/usr/local/bin/python
 #
 # Script to rip srt/ssa subtitles out of .mkv files for use with my samsung TV and serviio on FreeBSD
-# Usage: scriptname.py streamnumber [filename.mkv]
-# If filename isn't specified all .mkv in the current directory will be converted
-# Try ffmpeg -i filename to determine stream number you're after
+# Usage: scriptname.py [filename.mkv]
+# If the filename isn't specified all .mkv files in the current directory will be processed 
+# Developed with ffmpeg 2.1.1, you probably want that or higher if this doesn't work
 #
 
-import glob, re, sys, os
+import glob, re, argparse
 from subprocess import call
 
 ffmpeg = '/usr/local/bin/ffmpeg'
 
-def getcmd(i):
-	srtfile = re.sub(r".mkv", ".srt", i)
-	return [ffmpeg, '-i', i, '-vn', '-an', '-codec:s:0.%s' % (str(sys.argv[1])), 'srt', srtfile] 
+parser = argparse.ArgumentParser(description='Extract subtitles from mkv files.')
+parser.add_argument('-f', '--file', help="source filename (mkv) to extract subtitle from")
+args = parser.parse_args()
 
-if len(sys.argv) < 2:
-	print "usage: %s stream [filename]\ntry: 'ffmpeg -i filename' to determine srt stream number" % os.path.basename(__file__) 
-	sys.exit(0)
-elif len(sys.argv) < 3:
+def process(i):
+	return [ffmpeg, '-i', i, re.sub(r".mkv", ".srt", i)] 
+
+if args.file is None:
 	mkvs = glob.glob("*.mkv")
+	if (len(mkvs) == 0):
+		print "No .mkv files in current directory"
 	for i in mkvs:
-		call(getcmd(i))
-elif len(sys.argv) == 3:
-	i = sys.argv[2]
-	srtfile = re.sub(r".mkv", ".srt", i)
-	call(getcmd(i))
+		call(process(i))
+else:
+	call(process(args.file))
 
