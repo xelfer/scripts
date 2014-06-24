@@ -3,7 +3,7 @@ import re
 
 jobs = []
 joburls = []
-alljobs = []
+alljobs = {}
 
 link = "https://www.atlassian.com/company/careers#jobSection"
 website = urllib.urlopen(link)
@@ -22,7 +22,7 @@ for u in joburls:
 		if line.find("<td colspan=2><hr width='100%' size='1' color='silver'></td></tr><tr><td colspan=2><h1>") != -1:
 			jobtitle = re.sub(r"<td colspan=2><hr width='100%' size='1' color='silver'></td></tr><tr><td colspan=2><h1>", '', line).rstrip('\n')
 			jobtitle = re.sub(r"</h1></td>", '', jobtitle)
-			alljobs.append(jobtitle + " - " + u)
+			alljobs[u] = jobtitle
 
 for a in alljobs:
-	print a
+        print alljobs[a] + " - " + u
