@@ -1,8 +1,11 @@
-:g//normal gJ
+:g/\r/normal gJ
+:%s/\r//g
 :%s/<font face="Open Sans Semibold" size="36">\(.*\)<\/font>/\1/g
-:%s///g
 :%s/<font face="Open Sans Semibold" size="34" color="#e9f0e8">\(.*\)<\/font>/\1/g
 :%s/<font face="Open Sans Semibold" size="30" color="#e9f0e8">\(.*\)<\/font>/\1/g
 :%s/{\\an8}//g
 :%s/{\\an7}//g
 :wq
+
+
+
