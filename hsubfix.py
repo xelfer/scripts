@@ -24,7 +24,6 @@ if args.file is None:
 	if (len(srts) == 0):
 		print "No .srt files in current directory"
 	for i in srts:
-		print process(i)
-		#call(process(i))
+		call(process(i))
 else:
 	call(process(args.file))
