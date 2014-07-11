@@ -1,10 +1,21 @@
-:g/\r/normal gJ
-:%s/\r//g
-:%s/<font face="Open Sans Semibold" size="36">\(.*\)<\/font>/\1/g
-:%s/<font face="Open Sans Semibold" size="34" color="#e9f0e8">\(.*\)<\/font>/\1/g
-:%s/<font face="Open Sans Semibold" size="30" color="#e9f0e8">\(.*\)<\/font>/\1/g
+:%s/{\\an9}//g
 :%s/{\\an8}//g
 :%s/{\\an7}//g
+:%s/{\\an5}//g
+:%s/{\\an4}//g
+:%s/{\\an3}//g
+:%s/{\\an1}//g
+:g/\r/normal gJ
+:%s/\r//g
+:%s/<font face="Open Sans Semibold" size="36">//g
+:%s/<font face="Open Sans Semibold" size="34" color="#e9f0e8">//g
+:%s/<font face="Open Sans Semibold" size="33" color="#e9f0e8">//g
+:%s/<font face="Open Sans Semibold" size="32" color="#e9f0e8">//g
+:%s/<font face="Open Sans Semibold" size="30" color="#e9f0e8">//g
+:%s/<font face="Open Sans Semibold" size="18" color="#000000">//g
+:%s/<font face="Open Sans Semibold" size="18" color="#000000">//g
+:%s/<font face="Open Sans Semibold" size="18">//g
+:%s/<\/font>//g
 :wq
 
 
